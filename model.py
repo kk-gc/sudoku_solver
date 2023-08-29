@@ -4,6 +4,7 @@ class Sudoku:
         self.string = string
         self.string_zeroed = self.convert_empties_to_zeros()
         self.board = self.convert_string_to_board()
+        self.solved = self.solve()
 
     def convert_empties_to_zeros(self):
         return self.string.replace(' ', '0')

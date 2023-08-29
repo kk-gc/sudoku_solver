@@ -13,7 +13,8 @@ class Controller:
             return Sudoku(self.view.user_input)
         return None
 
-    def sudoku_solve(self):
-        if self.sudoku:
-            self.sudoku.solve()
+    # def sudoku_solve(self):
+    #     if self.sudoku:
+    #         self.sudoku.solve()
+    #     return False
 

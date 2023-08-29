@@ -38,3 +38,7 @@ class View:
 
             print(line)
 
+    @staticmethod
+    def print_something_went_wrong():
+        print('Something went wrong.')
+
