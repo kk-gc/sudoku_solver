@@ -5,12 +5,12 @@ from view import SudokuView
 class SudokuController:
 
     def __init__(self):
-        self.view = SudokuView()
+        self._view = SudokuView()
         self.sudoku = self.sudoku_make()
 
     def sudoku_make(self):
-        if self.view.user_input_valid:
-            return SudokuData(self.view.user_input)
+        if self._view.user_input_valid:
+            return SudokuData(self._view.user_input)
         return None
 
     # def sudoku_solve(self):
