@@ -34,8 +34,6 @@ class SudokuController:
     #         self.sudoku.solve()
     #     return False
 
-from controller import SudokuController
-
 
 if __name__ == '__main__':
 
