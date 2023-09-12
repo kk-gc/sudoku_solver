@@ -1,11 +1,11 @@
 from model import SudokuData
-from view import View
+from view import SudokuView
 
 
 class Controller:
 
     def __init__(self):
-        self.view = View()
+        self.view = SudokuView()
         self.sudoku = self.sudoku_make()
 
     def sudoku_make(self):

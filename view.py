@@ -1,4 +1,4 @@
-class View:
+class SudokuView:
 
     def __init__(self):
         self.user_input = self.get_user_input()
