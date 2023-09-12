@@ -35,11 +35,6 @@ class SudokuController:
     def print_solved_sudoku_as_board(self):
         self._view.print_as_board(self.sudoku.board)
 
-    # def sudoku_solve(self):
-    #     if self.sudoku:
-    #         self.sudoku.solve()
-    #     return False
-
 
 if __name__ == '__main__':
 
