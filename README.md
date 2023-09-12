@@ -40,9 +40,9 @@ sudoku: 2  8   7  9     3 1    49 8       9 4   5     1 3  6 2        7 6 2  8 1
 
 ## Usage
 
-Windows: `py sudoku_solver.py` 
+Windows: `py main.py` 
 
-Linux: `python3 ./sudoku_solver.py`
+Linux: `python3 ./main.py`
 
 Sample Sudoku strings: `sudoku_strings.txt`
 
