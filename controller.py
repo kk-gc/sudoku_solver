@@ -1,4 +1,4 @@
-from model import Sudoku
+from model import SudokuData
 from view import View
 
 
@@ -10,7 +10,7 @@ class Controller:
 
     def sudoku_make(self):
         if self.view.user_input_valid:
-            return Sudoku(self.view.user_input)
+            return SudokuData(self.view.user_input)
         return None
 
     # def sudoku_solve(self):
