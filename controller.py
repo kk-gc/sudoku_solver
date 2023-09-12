@@ -2,7 +2,7 @@ from model import SudokuData
 from view import SudokuView
 
 
-class Controller:
+class SudokuController:
 
     def __init__(self):
         self.view = SudokuView()

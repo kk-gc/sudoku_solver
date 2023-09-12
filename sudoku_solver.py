@@ -1,9 +1,9 @@
-from controller import Controller
+from controller import SudokuController
 
 
 if __name__ == '__main__':
 
-    controller = Controller()
+    controller = SudokuController()
     if controller.sudoku:
         controller.view.print_as_board(controller.sudoku.board)
     else:
