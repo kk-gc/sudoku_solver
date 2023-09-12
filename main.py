@@ -29,6 +29,12 @@ class SudokuController:
             return SudokuData(self.user_input)
         return None
 
+    def print_something_went_wrong(self):
+        self._view.print_something_went_wrong()
+
+    def print_solved_sudoku_as_board(self):
+        self._view.print_as_board(self.sudoku.board)
+
     # def sudoku_solve(self):
     #     if self.sudoku:
     #         self.sudoku.solve()
@@ -37,8 +43,9 @@ class SudokuController:
 
 if __name__ == '__main__':
 
-    controller = SudokuController()
-    if controller.sudoku:
-        controller._view.print_as_board(controller.sudoku.board)
+    sc = SudokuController()
+
+    if sc.sudoku and sc.sudoku.board:
+        sc.print_solved_sudoku_as_board()
     else:
-        controller._view.print_something_went_wrong()
+        sc.print_something_went_wrong()
