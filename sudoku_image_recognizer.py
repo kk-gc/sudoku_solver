@@ -21,6 +21,7 @@ class SudokuImageRecognizer:
         self.digits = self.get_digits()
         self.digits_match = self.get_digits_match()
         self.results = self.get_results()
+        self.best_result = self.get_best_result()
 
     def get_contours(self) -> dict[Any, Sequence[UMat] | UMat]:
         """
@@ -157,9 +158,40 @@ class SudokuImageRecognizer:
                 _result[i] = {value[i] for value in self.digits.values()}
         return _result
 
+    def get_best_result(self) -> str:
+        """
+        Method will return most probable sudoku as a string len = 81
+        with all zeroes replaced by spaces
+        :return: str
+        """
+        _return = []
+        for _value in self.results.values():
+            if _value == {0}:
+                # for {0} append ' '
+                _return.append(' ')
+            elif len(_value) == 1 and _value != {0}:
+                # for {1} to {9} append '1' to '9'
+                _return.append(str(*_value))
+            elif len(_value) == 2 and 0 in _value:
+                # for any values like {0, 6} append '6'
+                _value.remove(0)
+                _return.append(str(*_value))
+            elif len(_value) > 2:
+                # if more than 2 not empty like {0, 3, 8} pick the highest number,
+                # this is temporary solution as in that case we should analyze
+                # two separate cases (will implement this later)
+                _return.append(str(max(_value)))
+            else:
+                pass
+
+        if len(_return) == 81:
+            return ''.join(_return)
+        return ''
+
 
 if __name__ == '__main__':
+    pass
 
-    desired_output = '530070000600195000098000060800060003400803001700020006060000280000419005000080079'
-    sir = SudokuImageRecognizer('sudoku.png', desired_output)
+    # desired_output = '530070000600195000098000060800060003400803001700020006060000280000419005000080079'
+    # sir = SudokuImageRecognizer('sudoku.png', desired_output)
 
