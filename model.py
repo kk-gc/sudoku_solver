@@ -1,4 +1,5 @@
 import datetime
+from sudoku_image_recognizer import SudokuImageRecognizer
 
 
 class SudokuData:
