@@ -1,7 +1,22 @@
 class SudokuView:
 
-    def get_user_input(self):
-        return input('sudoku: ')
+    @staticmethod
+    def get_user_input() -> tuple[int, str]:
+        print(f'#===================================#')
+        print(f'#     S U D O K U   S O L V E R     #')
+        print(f'#      -----------------------      #')
+        print(f'#         (1)    from string        #')
+        print(f'#         (2)    from file          #')
+        print(f'#         (else) exit               #')
+        print(f'#===================================#')
+
+        option_selected = input()
+        if option_selected == '1':
+            return 1, input('sudoku string: ')
+        elif option_selected == '2':
+            return 2, input('sudoku file name: ')
+        else:
+            return 0, ''
 
     @staticmethod
     def print_as_board(board):
