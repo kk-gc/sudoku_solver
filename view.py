@@ -40,3 +40,8 @@ class SudokuView:
     def print_something_went_wrong():
         print('Something went wrong.')
 
+
+    @staticmethod
+    def print_exit_message():
+        print('Thanks for using, goodbye!')
+
