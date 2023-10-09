@@ -1,6 +1,8 @@
 from model import SudokuData, SudokuImageRecognizer
 from view import SudokuView
 
+import re
+
 
 class SudokuController:
 
@@ -14,19 +16,14 @@ class SudokuController:
 
     def validate_user_input(self):
         _option_chosen, _data = self.raw_user_input
+
         # option 1 - from sudoku string:
         if _option_chosen == 1:
-            # _data should be 9 x 9 = 81 characters long
-            if len(_data) != 81:
-                return False
-            try:
-                # raw_user_input should be a string with numbers and spaces only
-                # so after removing spaces should be able to convert to integer
-                int(_data.replace(' ', ''))
-            except ValueError:
-                return False
-            self.sudoku_to_solve = _data
-            return True
+            # _data should be 9 x 9 = 81 and contains only numbers 1-9 or empty spaces ' '
+            if len(_data) == 81 and re.match(r'[1-9 ]{81}', _data):
+                self.sudoku_to_solve = _data
+                return True
+            return False
 
         # option 2 - from sudoku file image:
         elif _option_chosen == 2:
