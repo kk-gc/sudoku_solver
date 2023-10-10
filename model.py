@@ -1,11 +1,13 @@
 import datetime
+import re
 from sudoku_image_recognizer import SudokuImageRecognizer
 
 
 class SudokuData:
 
-    def __init__(self, string):
-        self.string = string
+    def __init__(self, raw_string):
+        self.raw_string = raw_string
+        self.valid_string = self.validate_raw_string()
         self.string_zeroed = self._convert_empties_to_zeros()
         self.board = self._convert_string_to_board()
 
@@ -15,15 +17,24 @@ class SudokuData:
         else:
             self.board = None
 
+    def validate_raw_string(self):
+        if len(self.raw_string) == 81 and re.match(r'[1-9 ]{81}', self.raw_string):
+            return self.raw_string
+        return None
+
     def _convert_empties_to_zeros(self):
-        return self.string.replace(' ', '0')
+        if self.valid_string:
+            return self.valid_string.replace(' ', '0')
+        return None
 
     def _convert_string_to_board(self):
-        # convert string to list of lists (rows)
-        lol = [list(self.string_zeroed[i:i + 9]) for i in range(0, len(self.string_zeroed), 9)]
-        # convert all list elements type form str to int
-        board = [[int(el) for el in x] for x in lol]
-        return board
+        if self.string_zeroed:
+            # convert string to list of lists (rows)
+            lol = [list(self.string_zeroed[i:i + 9]) for i in range(0, len(self.string_zeroed), 9)]
+            # convert all list elements type form str to int
+            board = [[int(el) for el in x] for x in lol]
+            return board
+        return None
 
 
 class SudokuAlgorithm:
