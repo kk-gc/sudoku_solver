@@ -18,9 +18,11 @@ class SudokuData:
             self.board = None
 
     def validate_raw_string(self):
-        if len(self.raw_string) == 81 and re.match(r'[1-9 ]{81}', self.raw_string):
+        if isinstance(self.raw_string, str) \
+                and len(self.raw_string) == 81 \
+                and re.match(r'[1-9 ]{81}', self.raw_string):
             return self.raw_string
-        return None
+        return False
 
     def _convert_empties_to_zeros(self):
         if self.valid_string:
