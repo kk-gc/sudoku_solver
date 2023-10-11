@@ -1,15 +1,18 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
+from typing import Optional
 
 
-def thresholding(image: np.array, show_results: bool = False) -> dict[str, np.array]:
+def thresholding(image: np.ndarray, show_results: bool = False) -> Optional[dict[str, np.array]]:
     """
     Function return dict of transformed images
     :param image: numpy array of an image to process
     :param show_results: show all transformations on the screen
     :return: dict = { threshold_transformation_name: image_as_numpy_array }
     """
+    if type(image) is not np.ndarray or not isinstance(show_results, bool):
+        return None
 
     _image_grayscale = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
