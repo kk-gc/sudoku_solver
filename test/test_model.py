@@ -1,3 +1,9 @@
+# Added as pytest have some issues with importing
+# relative path modules - known issue
+import sys
+import os
+sys.path.insert(0, os.getcwd())
+
 import pytest
 import model
 
