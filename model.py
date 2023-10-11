@@ -11,11 +11,7 @@ class SudokuData:
         self.string_zeroed = self._convert_empties_to_zeros()
         self.board = self._convert_string_to_board()
 
-        sa = SudokuAlgorithm(self.board)
-        if sa.board_solved_ok:
-            self.board = sa.board
-        else:
-            self.board = None
+        self.solve_sudoku()
 
     def validate_raw_string(self):
         if isinstance(self.raw_string, str) \
@@ -37,6 +33,14 @@ class SudokuData:
             board = [[int(el) for el in x] for x in lol]
             return board
         return None
+
+    def solve_sudoku(self):
+        if self.board:
+            sa = SudokuAlgorithm(self.board)
+            if sa.board_solved_ok:
+                self.board = sa.board
+            else:
+                self.board = None
 
 
 class SudokuAlgorithm:
