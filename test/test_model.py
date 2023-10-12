@@ -16,7 +16,7 @@ import model
                           ('  4  1  8        73  4     1  2 6  9    387   2     1  8 3   2  6  1     7     65', True),
                           ('2  8   7  9     3 1    49 8       9 4   5     1 3  6 2        7 6 2  8 1  2  3   ', True),
                           ])
-def test_sudoku_data_valid_strings(raw_string, is_valid):
+def test_sudoku_data_validate_raw_strings_good(raw_string, is_valid):
     vs = model.SudokuData(raw_string).valid_string
     assert vs
 
@@ -31,6 +31,6 @@ def test_sudoku_data_valid_strings(raw_string, is_valid):
                           (200800070090000030100004908000000090400050000010300602000000007060200801002003000, False),
                           (-200800070090000030100004908000000090400050000010300602000000007060200801002003000, False),
                           ])
-def test_sudoku_data_invalid_strings(raw_string, is_valid):
+def test_sudoku_data_validate_raw_strings_bad(raw_string, is_valid):
     vs = model.SudokuData(raw_string).valid_string
     assert not vs
