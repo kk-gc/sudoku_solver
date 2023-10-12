@@ -1,6 +1,7 @@
 import datetime
 import re
 from sudoku_image_recognizer import SudokuImageRecognizer
+from typing import Optional
 
 
 class SudokuData:
@@ -13,19 +14,19 @@ class SudokuData:
 
         self.solve_sudoku()
 
-    def validate_raw_string(self):
+    def validate_raw_string(self) -> str | bool:
         if isinstance(self.raw_string, str) \
                 and len(self.raw_string) == 81 \
                 and re.match(r'[1-9 ]{81}', self.raw_string):
             return self.raw_string
         return False
 
-    def _convert_empties_to_zeros(self):
+    def _convert_empties_to_zeros(self) -> Optional[str]:
         if self.valid_string:
             return self.valid_string.replace(' ', '0')
         return None
 
-    def _convert_string_to_board(self):
+    def _convert_string_to_board(self) -> Optional[list[list]]:
         if self.string_zeroed:
             # convert string to list of lists (rows)
             lol = [list(self.string_zeroed[i:i + 9]) for i in range(0, len(self.string_zeroed), 9)]
@@ -34,7 +35,7 @@ class SudokuData:
             return board
         return None
 
-    def solve_sudoku(self):
+    def solve_sudoku(self) -> None:
         if self.board:
             sa = SudokuAlgorithm(self.board)
             if sa.board_solved_ok:
@@ -53,7 +54,7 @@ class SudokuAlgorithm:
         # True if solved, False is timeout
         self.board_solved_ok = self._solve()
 
-    def _solve(self):
+    def _solve(self) -> bool:
         # timeout:
         if (datetime.datetime.now() - self.algorithm_start).seconds > self.timeout:
             return False
@@ -72,14 +73,14 @@ class SudokuAlgorithm:
                 self.board[row][col] = 0
         return False
 
-    def _find_empty(self):
+    def _find_empty(self) -> Optional[tuple[int, int]]:
         for row in range(9):
             for col in range(9):
                 if self.board[row][col] == 0:
                     return row, col
         return None
 
-    def _valid(self, num, row, col):
+    def _valid(self, num: int, row: int, col: int) -> bool:
         # Check row
         for i in range(9):
             if self.board[row][i] == num and col != i:
